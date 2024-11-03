@@ -9,7 +9,7 @@ namespace Plance\Plugin\Redirects_For_Htaccess;
 
 defined( 'ABSPATH' ) || exit;
 
-use Plance\Plugin\Portfolio_Light\Singleton;
+use Plance\Plugin\Redirects_For_Htaccess\Singleton;
 
 /**
  * Textdomain class.
