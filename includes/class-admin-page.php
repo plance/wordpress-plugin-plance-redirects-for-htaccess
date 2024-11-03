@@ -231,7 +231,7 @@ class Admin_Page {
 			return $links;
 		}
 
-		$settings_link = '<a href="' . menu_page_url( self::SLUG, false ) . '">' . esc_html( __( 'Settings' ) ) . '</a>';
+		$settings_link = '<a href="' . menu_page_url( self::SLUG, false ) . '">' . esc_html( __( 'Settings', 'plance-redirects-for-htaccess' ) ) . '</a>';
 
 		array_unshift( $links, $settings_link );
 

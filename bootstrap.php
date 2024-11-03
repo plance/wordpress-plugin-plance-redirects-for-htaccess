@@ -16,17 +16,6 @@ const VERSION = '1.0.0';
 define( __NAMESPACE__ . '\URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
 
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( is_admin() ) {
-			do_action( 'plance_plugin_redirects_for_htaccess_admin' );
-		}
-	},
-	-1
-);
-
-
 /**
  * Autoload plugin classes.
  */
