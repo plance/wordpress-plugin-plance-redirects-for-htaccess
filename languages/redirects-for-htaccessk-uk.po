@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Redirects for Htaccess\n"
-"POT-Creation-Date: 2024-11-03 17:30+0200\n"
-"PO-Revision-Date: 2024-11-03 17:32+0200\n"
+"POT-Creation-Date: 2025-01-11 17:45+0200\n"
+"PO-Revision-Date: 2025-01-11 17:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -11,46 +11,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_x;_n;gettext;gettext_noop;esc_html_e;_;_ex;_nx;"
 "esc_html__;esc_attr__;esc_attr_e\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: includes/class-admin-page.php:54 includes/class-admin-page.php:55
-#: templates/admin/page.php:12
+#: includes/class-admin-page.php:55 includes/class-admin-page.php:56
+#: templates/admin/page.php:14
 msgid "Htaccess Redirect"
 msgstr "Htaccess Redirect"
 
-#: includes/class-admin-page.php:234
+#: includes/class-admin-page.php:256
 msgid "Settings"
 msgstr "Налаштування"
 
-#: templates/admin/page.php:17
+#: templates/admin/page.php:20
 msgid "Post types"
 msgstr "Типи записів"
 
-#: templates/admin/page.php:37
+#: templates/admin/page.php:40
 msgid "Taxonomies"
 msgstr "Таксономії"
 
-#: templates/admin/page.php:57
+#: templates/admin/page.php:60
 msgid "New site domain"
 msgstr "Новий домен сайту"
 
-#: templates/admin/page.php:61
+#: templates/admin/page.php:69
 msgid "Enter the site URL without the slash at the end."
 msgstr "Введіть URL-адресу сайту без слешу наприкінці."
 
-#: templates/admin/page.php:68
+#: templates/admin/page.php:76
 msgid "Redirects"
 msgstr "Редиректи"
 
-#: templates/admin/page.php:71
+#: templates/admin/page.php:80
 msgid "Paste the code above into the beginning of your site's .htaccess file."
 msgstr "Вставте вказаний вище код на початок .htaccess файлу вашого сайту."
 
-#: templates/admin/page.php:78
+#: templates/admin/page.php:82
+msgid "No data available."
+msgstr "Немає даних."
+
+#: templates/admin/page.php:90
 msgid "Generate"
 msgstr "Генерувати"

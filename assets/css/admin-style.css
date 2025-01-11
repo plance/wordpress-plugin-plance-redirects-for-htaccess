@@ -1,9 +1,13 @@
-.plance-redirects-for-htaccess {
-	.plc-field-site-domain {
+.redirects-for-htaccess {
+	.loc-field-site-domain {
 		width: 500px;
+
+		&.loc-has-error {
+			border: 1px solid red;
+		}
 	}
 
-	.plc-field-content-links {
+	.loc-field-content-links {
 		width: 100%;
 		height: 400px;
 	}

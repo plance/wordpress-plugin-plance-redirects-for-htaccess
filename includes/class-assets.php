@@ -35,7 +35,7 @@ class Assets {
 	 */
 	public function admin_enqueue_scripts() {
 		wp_register_style(
-			'plance-redirects-for-htaccess',
+			'redirects-for-htaccess',
 			URL . '/assets/css/admin-style.css',
 			array(),
 			VERSION

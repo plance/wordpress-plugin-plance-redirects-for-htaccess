@@ -1,5 +1,5 @@
 === Redirects for Htaccess ===
-Contributors: Pavel
+Contributors: plance
 Tags: redirect, htaccess, 301
 Requires at least: 6.0.0
 Tested up to: 6.7.1
@@ -24,7 +24,7 @@ How to use:
 
 == Installation ==
 
-1. Unzip and upload the "plance-redirects-for-htaccess" to the '/wp-content/plugins/' directory.
+1. Unzip and upload the "redirects-for-htaccess" to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to the "Htaccess Redirect" page in the "Tools" menu.
 

@@ -10,6 +10,7 @@ namespace Plance\Plugin\Redirects_For_Htaccess;
 defined( 'ABSPATH' ) || exit;
 
 use const Plance\Plugin\Redirects_For_Htaccess\PATH;
+use const Plance\Plugin\Redirects_For_Htaccess\SECURITY;
 use Plance\Plugin\Redirects_For_Htaccess\Singleton;
 
 /**
@@ -18,7 +19,7 @@ use Plance\Plugin\Redirects_For_Htaccess\Singleton;
 class Admin_Page {
 	use Singleton;
 
-	const SLUG = 'plance-redirects-for-htaccess';
+	const SLUG = 'redirects-for-htaccess';
 
 	/**
 	 * Home url.
@@ -51,25 +52,45 @@ class Admin_Page {
 	 */
 	public function admin_menu() {
 		add_management_page(
-			__( 'Htaccess Redirect', 'plance-redirects-for-htaccess' ),
-			__( 'Htaccess Redirect', 'plance-redirects-for-htaccess' ),
+			__( 'Htaccess Redirect', 'redirects-for-htaccess' ),
+			__( 'Htaccess Redirect', 'redirects-for-htaccess' ),
 			'manage_options',
 			self::SLUG,
 			function () {
-				wp_enqueue_style( 'plance-redirects-for-htaccess' );
+				wp_enqueue_style( 'redirects-for-htaccess' );
 
 				$input_post_types  = array();
 				$input_taxonomies  = array();
 				$input_site_domain = '';
 				$content_links     = '';
 
-				if ( filter_input( INPUT_SERVER, 'REQUEST_METHOD', FILTER_DEFAULT ) === 'POST' ) {
+				if ( ! empty( $_POST['submit_redirects_for_htaccess'] ) ) {
 
-					$input_post_types  = array_filter( (array) filter_input( INPUT_POST, 'plance_redirects_for_htaccess__post_types', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
-					$input_taxonomies  = array_filter( (array) filter_input( INPUT_POST, 'plance_redirects_for_htaccess__taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
-					$input_site_domain = trim( filter_input( INPUT_POST, 'plance_redirects_for_htaccess__site_domain', FILTER_DEFAULT ) );
+					$input_wpnonce = filter_input( INPUT_POST, '_wpnonce', FILTER_CALLBACK, array( 'options' => 'sanitize_text_field' ) );
+					if ( ! wp_verify_nonce( $input_wpnonce, SECURITY ) ) {
+						wp_die( 'Wrong input data!' );
+					}
 
-					$input_site_domain     = rtrim( $input_site_domain, '/' );
+					$input = filter_input( INPUT_POST, 'redirects4htaccess', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+					$input = filter_var_array(
+						$input,
+						array(
+							'post_types'  => array(
+								'filter'  => FILTER_CALLBACK,
+								'options' => array( $this, 'deep_sanitize_text_field' ),
+							),
+							'taxonomies'  => array(
+								'filter'  => FILTER_CALLBACK,
+								'options' => array( $this, 'deep_sanitize_text_field' ),
+							),
+							'site_domain' => FILTER_SANITIZE_URL,
+						)
+					);
+
+					$input_post_types  = array_filter( (array) $input['post_types'] );
+					$input_taxonomies  = array_filter( (array) $input['taxonomies'] );
+					$input_site_domain = rtrim( $input['site_domain'], '/' );
+
 					$this->new_site_domain = $input_site_domain;
 					$this->home_url        = rtrim( home_url(), '/' );
 
@@ -85,6 +106,7 @@ class Admin_Page {
 					'selected_post_types' => $input_post_types,
 					'selected_taxonomies' => $input_taxonomies,
 					'site_domain'         => $input_site_domain,
+					'is_submitted'        => ! empty( $_POST['submit_redirects_for_htaccess'] ),
 					'content_links'       => $content_links,
 				);
 
@@ -227,14 +249,28 @@ class Admin_Page {
 	 * @return mixed
 	 */
 	public function plugin_action_links( $links, $file ) {
-		if ( strpos( $file, '/plance-redirects-for-htaccess.php' ) === false ) {
+		if ( strpos( $file, '/redirects-for-htaccess.php' ) === false ) {
 			return $links;
 		}
 
-		$settings_link = '<a href="' . menu_page_url( self::SLUG, false ) . '">' . esc_html( __( 'Settings', 'plance-redirects-for-htaccess' ) ) . '</a>';
+		$settings_link = '<a href="' . menu_page_url( self::SLUG, false ) . '">' . esc_html( __( 'Settings', 'redirects-for-htaccess' ) ) . '</a>';
 
 		array_unshift( $links, $settings_link );
 
 		return $links;
+	}
+
+	/**
+	 * Deep sanitize text field.
+	 *
+	 * @param  mixed $value Input data.
+	 * @return array|string
+	 */
+	private function deep_sanitize_text_field( $value ) {
+		if ( is_array( $value ) ) {
+			return array_map( 'sanitize_text_field', $value );
+		}
+
+		return sanitize_text_field( $value );
 	}
 }

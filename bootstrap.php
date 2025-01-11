@@ -10,8 +10,9 @@ namespace Plance\Plugin\Redirects_For_Htaccess;
 defined( 'ABSPATH' ) || exit;
 
 
-const PATH    = __DIR__;
-const VERSION = '1.0.0';
+const PATH     = __DIR__;
+const VERSION  = '1.0.0';
+const SECURITY = 'redirects_for_htaccess__xyz';
 
 define( __NAMESPACE__ . '\URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 

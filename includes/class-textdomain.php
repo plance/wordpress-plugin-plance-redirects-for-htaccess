@@ -23,6 +23,6 @@ class Textdomain {
 	 * @return void
 	 */
 	protected function init() {
-		load_plugin_textdomain( 'plance-redirects-for-htaccess', false, '/plance-redirects-for-htaccess/languages' );
+		load_plugin_textdomain( 'redirects-for-htaccess', false, '/redirects-for-htaccess/languages' );
 	}
 }
