@@ -7,7 +7,7 @@
  * Plugin Name: Redirects for Htaccess
  * Description: Generates redirect code for .htaccess file
  * Plugin URI:  https://plance.top/
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      plance
  * License:     GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
